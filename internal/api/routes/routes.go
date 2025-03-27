@@ -9,7 +9,6 @@ import (
 type Config struct {
 	App         *fiber.App
 	UserHandler port.UserHandler
-	AuthHandler port.AuthHandler
 	Middleware  middlerware.Middleware
 }
 
@@ -25,8 +24,10 @@ func (c *Config) Routes() {
 		})
 	})
 	api := c.App.Group("api/v1")
-	api.Post("/auths/login", c.AuthHandler.Login)
-	api.Post("/auths/register", c.AuthHandler.Register)
-	api.Get("/users/me", c.Middleware.AuthMiddleware(), c.UserHandler.Me)
-	api.Put("/users/me", c.Middleware.AuthMiddleware(), c.UserHandler.UpdateUser)
+	api.Post("/user/refresh", c.UserHandler.Login)
+	api.Post("/user/login", c.UserHandler.Login)
+	api.Post("/user/register", c.UserHandler.Register)
+	api.Post("/user/forget-password", c.UserHandler.ForgetPassword)
+	api.Get("/user/me", c.Middleware.AuthMiddleware(), c.UserHandler.Me)
+	api.Put("/user/me", c.Middleware.AuthMiddleware(), c.UserHandler.UpdateUser)
 }

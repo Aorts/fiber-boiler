@@ -3,6 +3,7 @@ package usersvc
 import (
 	"github.com/Aorts/fiber-boiler/internal/core/domain"
 	"github.com/Aorts/fiber-boiler/internal/core/port"
+	"github.com/gofiber/fiber/v2"
 )
 
 type service struct {
@@ -15,26 +16,31 @@ func NewUserService(ur port.UserRepository) port.UserService {
 	}
 }
 
-func (s *service) Create(user *domain.User) error {
+// Delete implements port.UserService.
+func (s *service) Delete(c *fiber.Ctx, id string) error {
 	panic("unimplemented")
 }
 
-func (s *service) Delete(id string) error {
+func (s *service) Create(c *fiber.Ctx, user *domain.User) error {
 	panic("unimplemented")
 }
 
-func (s *service) GetByEmail(email string) (*domain.User, error) {
+// GetByEmail implements port.UserService.
+func (s *service) GetByEmail(c *fiber.Ctx, email string) (*domain.User, error) {
 	panic("unimplemented")
 }
 
-func (s *service) GetById(id string) (*domain.User, error) {
+// GetById implements port.UserService.
+func (s *service) GetById(c *fiber.Ctx, id string) (*domain.User, error) {
 	panic("unimplemented")
 }
 
-func (s *service) GetByUsername(username string) (*domain.User, error) {
+// GetByUsername implements port.UserService.
+func (s *service) GetByUsername(c *fiber.Ctx, username string) (*domain.User, error) {
 	panic("unimplemented")
 }
 
-func (s *service) Update(user *domain.User) error {
+// Update implements port.UserService.
+func (s *service) Update(c *fiber.Ctx, user *domain.User) error {
 	panic("unimplemented")
 }
