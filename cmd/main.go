@@ -7,7 +7,6 @@ import (
 
 	"github.com/Aorts/fiber-boiler/config"
 	"github.com/Aorts/fiber-boiler/infrastructure"
-	"github.com/Aorts/fiber-boiler/internal/adapter/handler/authhdl"
 	"github.com/Aorts/fiber-boiler/internal/adapter/handler/userhdl"
 	"github.com/Aorts/fiber-boiler/internal/adapter/repository/userrepo"
 	"github.com/Aorts/fiber-boiler/internal/api/middlerware"
@@ -30,8 +29,7 @@ func main() {
 	authsvc := authsvc.NewAuthService()
 
 	// Handler
-	userHandler := userhdl.NewUserHandler(usersvc)
-	authHandler := authhdl.NewAuthHandler(authsvc)
+	userHandler := userhdl.NewUserHandler(authsvc, usersvc)
 
 	middlewares := middlerware.NewMiddleware()
 	app := initFiber()
@@ -39,7 +37,6 @@ func main() {
 	routesConfig := routes.Config{
 		App:         app,
 		UserHandler: userHandler,
-		AuthHandler: authHandler,
 		Middleware:  middlewares,
 	}
 	routesConfig.Setup()

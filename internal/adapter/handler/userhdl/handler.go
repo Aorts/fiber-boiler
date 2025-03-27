@@ -7,10 +7,12 @@ import (
 
 type handler struct {
 	usersvc port.UserService
+	authsvc port.AuthService
 }
 
-func NewUserHandler(usersvc port.UserService) port.UserHandler {
+func NewUserHandler(authsvc port.AuthService, usersvc port.UserService) port.UserHandler {
 	return &handler{
+		authsvc: authsvc,
 		usersvc: usersvc,
 	}
 }
@@ -20,5 +22,21 @@ func (h *handler) Me(c *fiber.Ctx) error {
 }
 
 func (h *handler) UpdateUser(c *fiber.Ctx) error {
+	panic("unimplemented")
+}
+
+func (h *handler) ForgetPassword(c *fiber.Ctx) error {
+	panic("unimplemented")
+}
+
+func (h *handler) Login(c *fiber.Ctx) error {
+	panic("unimplemented")
+}
+
+func (h *handler) Register(c *fiber.Ctx) error {
+	panic("unimplemented")
+}
+
+func (h *handler) RefreshToken(c *fiber.Ctx) error {
 	panic("unimplemented")
 }
